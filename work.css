@@ -1,0 +1,331 @@
+@font-face {
+  font-family:'MyFont2' ;
+  src: url('PPMonumentExtended-Black.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('PPMonumentExtended-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family:'MyFont3' ;
+  src: url('NEOPIXEL-Regular.otf') format('opentype');
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding : 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color : rgb(rgb(0, 0, 0));
+  overflow: hidden; 
+ 
+  
+}
+
+#video-background {
+  position: fixed; /* Fixe la vidéo en arrière-plan */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%; /* Largeur de 100% */
+  height: 100%; /* Hauteur de 100% */
+  object-fit: cover; /* Assure que la vidéo couvre tout l'écran */
+  z-index: -100; /* Garde la vidéo en arrière-plan */
+  transform-origin: center center; 
+}
+
+
+
+.container {
+  display: grid; /* Utilise la grille pour la disposition */
+  grid-template-columns: repeat(3, 1fr); /* Crée trois colonnes de taille égale */
+  gap: 30px; /* Espace entre les carrés */
+  justify-content: center; /* Centre le contenu horizontalement */
+  align-content: center; /* Centre le contenu verticalement */
+  padding: 30px; /* Ajoute de l'espace autour de la grille */
+  width: 100%; /* Assure que la grille occupe la largeur entière */
+  max-width: 960px; /* Largeur maximale du conteneur */
+  margin: auto; /* Centre le conteneur dans la page */
+}
+
+.container .square:last-child:nth-child(6) {
+  grid-column-start: 2; /* Commence du 2ème emplacement de la grille */
+  grid-column-end: 3; /* Se termine au 3ème, le centrant */
+}
+
+.square {
+  border-radius: 0; /* Carrés */
+  width: 150px;
+  height: 150px;
+  position: relative; 
+  overflow: hidden;
+  background-size: cover; /* L'image de fond couvre tout le carré */
+  background-position: center; /* Centre l'image de fond */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-position 0.3s ease;
+  background-color:"#0000";
+  transition: transform 0.3s ease-in-out, background-position 0.3s ease-in-out; /* Transition plus douce */
+  z-index: 2;
+}
+
+.square::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:"#0000"; /* Fond noir initial */
+  transition: transform 0.3s ease-in-out; /* Transition pour le glissement */
+  transform: translateY(0%); /* Commence couvrant le carré */
+  z-index: 2; /* Au-dessus de l'image de fond */
+}
+
+/* Animation lors du survol du carré pour déplacer le fond noir vers le bas */
+.square:hover::before {
+  transform: translateY(100%); /* Glisse vers le bas pour révéler l'aperçu */
+}
+
+.square:hover {
+  transform: scale(1.05); /* Légère augmentation de la taille */
+}
+
+
+
+/* Pour que l'image de fond apparaisse sous le fond noir, nous devons l'ajouter explicitement */
+.square {
+  background-image: url('Wasserstoff_21cm_17.jpg'); /* Remplace par le chemin de ton image */
+}
+
+.modal {
+  display: none; /* Caché par défaut */
+  position: fixed; /* Reste en position fixe sur l'écran */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0,); /* Fond semi-transparent */
+  z-index: 10; /* Assure qu'il est au-dessus des autres éléments */
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  padding: 40px;
+  border: 1px solid #888;
+  width: 80%; /* Ajuste la largeur de la modale selon tes besoins */
+  max-width: 1200px; /* Largeur maximale */
+  height: auto; /* La hauteur s'ajuste automatiquement au contenu */
+  max-height: 80vh; /* Hauteur maximale pour éviter de dépasser la vue de l'écran */
+  box-shadow: 0 4px 8px rgba(0, 0, 0,);
+  z-index: 11;
+  display: flex;
+  flex-direction: column; /* Organise le contenu verticalement */
+  align-items: center; /* Centre horizontalement le contenu */
+  overflow-y: auto; /* Permet le défilement vertical si nécessaire */
+  
+}
+
+.modal-gif-container {
+  width: 100%; /* Le conteneur prend toute la largeur de la modale */
+}
+
+.modal-gif {
+  width: 70%; /* Diminue la largeur à 50% de la largeur de son conteneur parent */
+  height: auto; /* La hauteur s'ajustera proportionnellement */
+  margin-bottom:  20px; /* Ajoute un espace entre les GIFs */
+}
+
+.modal-gif img {
+  max-width: 100%; /* Empêche le GIF de dépasser sa section */
+  height: auto; /* Maintient le ratio d'aspect du GIF */
+}
+
+.modal-text { 
+  width: 100%; /* La section de texte prend toute la largeur de la modale */
+  margin-top: 30px; /* Ajoute un espace entre les GIFs et le texte */
+  /* Le reste des styles pour .modal-text */
+}
+
+.modal-title {
+  font-size: 34px; /* Ajuste la taille du titre */
+  margin-top: 10px; /* Espace au-dessus du titre */
+  margin-bottom: 20px; /* Espace en dessous du titre */
+  text-align: center; /* Centre le titre si tu le souhaites */
+  font-family: 'Myfont2', arial,  sans-serif; 
+}
+
+.modal-description {
+  font-size: 16px; /* Ajuste la taille de la description */
+  margin-top: 10px; /* Espace au-dessus de la description */
+  font-family: 'Myfont', arial,  sans-serif; 
+}
+
+.modal-video-container {
+  width: 100%; /* Largeur du conteneur de la vidéo */
+  max-width: 640px;
+  display: flex; /* Utilise flexbox pour centrer la vidéo */
+  justify-content: center; /* Centre horizontalement la vidéo dans le conteneur */
+  align-items: center; /* Centre verticalement la vidéo dans le conteneur */
+}
+
+.modal-video {
+  max-width: 70%; /* Ajuste la largeur maximale de la vidéo */
+  height: auto; /* La hauteur s'ajustera automatiquement pour conserver le ratio */
+  margin-top: 20px;
+}
+
+.modal-image {
+  max-width: 70%; /* ou la taille que tu souhaites */
+  height: auto; /* pour maintenir le ratio d'aspect */
+  margin: 20px auto; /* pour centrer l'image et ajouter de l'espace en haut et en bas */
+}
+
+.title-spacing {
+  margin-top: 10px; /* Ajoute plus d'espace au-dessus du titre */
+  margin-bottom: 120px; /* Ajoute plus d'espace en dessous du titre */
+}
+
+.desc-spacing {
+  margin-bottom: 10px; /* Ajoute plus d'espace en dessous de la description */
+}
+
+
+
+.project1-modal-image {
+  max-width : 70%;
+  height : auto;
+  margin : 20px auto;
+
+}
+
+.modal-separator {
+  height: 100px;
+  clear: both;
+}
+
+.close-button {
+  position: fixed;
+  top: 50px; /* Espacement du haut de .modal-content */
+  left: 140px; /* Espacement du côté gauche de .modal-content */
+  z-index: 1000;
+  color: #aaa;
+  font-size: 36px;
+  padding : 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.return-link {
+  background-color: black;
+  position: absolute; /* Position absolue */
+  top: 7%; /* Centre verticalement sur le rectangle blanc */
+  left: 36%; /* Centre horizontalement sur le rectangle blanc */
+  transform: translate(-50%, -50%); /* Ajuste la position pour centrer précisément le texte */
+  font-size: 40px; /* Taille de la police pour le lien */
+  font-family: 'Myfont3', arial,  sans-serif; 
+  color: #ffffff; /* Couleur du texte */
+  text-decoration: none; /* Supprime le soulignement par défaut des liens */
+  z-index: 2; /* S'assurer qu'il est au-dessus du rectangle blanc */
+  animation: fadeIn 1s ease-in-out forwards;
+  transition: transform 0.3s ease;
+}
+
+.return-link:hover {
+  transform: translateY(-5px); /* Déplace légèrement vers le haut pour l'effet de surélévation */
+
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rectangle-blanc {
+  width: 40%; /* Largeur du rectangle */
+  height: 800px; /* Hauteur du rectangle */
+  background-color: rgb(0, 0, 0,0.5); /* Couleur de fond blanche */
+  position: absolute; /* Positionnement absolu pour le placer au centre */
+  top: 50%; /* Position verticale centrée */
+  left: 50%; /* Position horizontale centrée */
+  transform: translate(-50%, -50%); /* Déplace le rectangle pour le centrer exactement */
+  z-index: 1; /* Assure qu'il est visible au-dessus des autres éléments si nécessaire */
+}
+
+.gif-title-spacing {
+  margin-bottom: 30px; /* Ajoute de l'espace sous le titre du GIF */
+}
+
+.gif-spacing-1,
+.gif-spacing-2,
+.gif-spacing-3 {
+  margin-bottom: 10px; /* Ajoute de l'espace sous chaque GIF */
+}
+
+.gif-desc-spacing {
+  margin-bottom: 10px; /* Ajoute de l'espace sous la description du GIF */
+}
+
+.video-title-spacing {
+  margin-top: 120px; /* Ajoute de l'espace au-dessus du titre de la vidéo */
+}
+
+.video-spacing {
+  margin-top: 10px; /* Ajoute de l'espace sous la vidéo */
+}
+
+.video-desc-spacing {
+  margin-top: 20px; /* Ajoute de l'espace au-dessus de la description de la vidéo */
+
+}
+
+/* Ajoute ceci dans ton fichier CSS */
+.new-row-spacing {
+  margin-top: 30px; /* Ajuste la marge supérieure selon tes besoins */
+  margin-bottom: 30px; /* Ajuste la marge inférieure selon tes besoins */
+}
+
+
+/* Style pour le titre de la nouvelle rangée sans marge supplémentaire */
+.new-row-title {
+  margin-top: 120px; /* Espace au-dessus du titre */
+  margin-bottom: 0; /* Aucun espace supplémentaire en dessous */
+}
+
+/* Style pour les images de la nouvelle rangée */
+.modal-image.half-width {
+  max-width: 50%; /* Chaque image ne prendra que 50% de la largeur disponible */
+  height: auto; /* Maintient le ratio de l'image */
+  display: inline-block; /* Les images seront côte à côte */
+}
+
+/* Style pour la description de la nouvelle rangée */
+.new-row-description {
+  margin-top: 20px; /* Espace au-dessus de la description */
+}
+
+/* Style pour l'espacement global de la nouvelle rangée */
+.new-row-spacing {
+  margin-top: 10px; /* Ajuste cette valeur pour l'espacement au-dessus de la rangée */
+}
+
+.modal-brainvideo{
+  transform: scale(0.5);
+}
+
+

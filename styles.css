@@ -1,0 +1,341 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('PPMonumentExtended-Light.otf') format('opentype');
+}
+
+
+
+@font-face {
+  font-family:'MyFont2' ;
+  src: url('PPMonumentExtended-Black.otf') format('opentype');
+}
+
+@font-face {
+  font-family:'MyFont3' ;
+  src: url('NEOPIXEL-Regular.otf') format('opentype');
+}
+
+.special {
+  font-family: 'MyFont3', arial, sans-serif;
+}
+
+
+body, html {
+  min-width: 1280px;  /* Ajuste cette valeur selon tes besoins */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-size: 50px 50px, 50px 50px, 100% 100%;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+.scene {
+  perspective: 1000px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.link {
+  text-decoration: none;
+  font-family: 'Myfont3', arial,  sans-serif; ;
+  color: #000; 
+  font-size: 50px;
+  margin-right: -130px; 
+  margin-bottom: 120px;
+
+  animation: fadeIn 2s ease-in-out forwards;
+  opacity: 0;  /* Initialement invisible */
+
+}
+
+.link:hover {
+  transform: translateY(-5px);  /* Ajuste la valeur selon tes besoins */
+  transition: transform 0.3s ease;
+}
+
+
+.about-link {
+  animation-delay: 5s;  /* Apparaît après 1 seconde */
+}
+
+.work-link {
+  animation-delay: 6s;  /* Apparaît après 2 secondes */
+}
+
+.contact-link {
+  animation-delay: 7s;  /* Apparaît après 3 secondes */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.links {
+  position: fixed;
+  top: 260px; 
+  right: 370px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1000;
+ }
+  
+.cube {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  margin: 0 1cm; 
+  transition: box-shadow 0.3s ease-out;
+}
+
+.aura {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgb(150, 237, 208), transparent);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cube:hover .aura {
+  opacity: 1;
+}
+
+.face {
+  position: absolute;
+  width: 200px;  
+  height: 200px;  
+  background: transparent;
+  border: 1px solid black;
+}
+
+.front  { transform: rotateY(0deg) translateZ(100px); }   
+.back   { transform: rotateY(180deg) translateZ(100px); }  
+.left   { transform: rotateY(-90deg) translateZ(100px); }  
+.right  { transform: rotateY(90deg) translateZ(100px); }   
+.top    { transform: rotateX(90deg) translateZ(100px); }   
+.bottom { transform: rotateX(-90deg) translateZ(100px); } 
+
+
+.first-name-container {
+  position: relative;
+  display: inline-block;
+  font-family: 'Myfont2', arial,  sans-serif;
+  left: calc(50% - 13cm); /* 10cm à gauche du centre de la page */
+  top: 8% ;
+  transform: translateY(-9%);
+
+}
+
+
+.first-name::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px; /* épaisseur de la ligne */
+  background: black; /* couleur de la ligne */
+  animation: drawLine 2s forwards; /* animation */
+}
+@keyframes drawLine {
+  to {
+    width: calc(100% - 40px); /* s'arrête avant la fin du texte */
+  }
+}
+
+.vertical-line {
+  position: absolute;
+  bottom: 1;
+  left: calc(100% - 42px); /* un petit espace après le prénom */
+  width: 2px; /* épaisseur de la ligne */
+  height: 0;
+  background: black; /* couleur de la ligne */
+  animation: drawLineDown 2s 2s forwards; /* animation */
+}
+
+@keyframes drawLineDown {
+  to {
+  height: calc(14 * 20px); /* descend de 14 carreaux */
+  }
+}
+
+.vertical-line::before {
+  content: "";
+  position: absolute;
+  bottom:0; /* même hauteur que la ligne verticale */
+  left: 0; /* commence à la gauche de la ligne verticale */
+  width: 0;
+  height: 2px; /* même épaisseur que la ligne verticale */
+  background: black; /* même couleur que la ligne verticale */
+  animation: drawLineRight 2s 4s forwards; /* animation */
+}
+
+@keyframes drawLineRight {
+  to {
+    width: calc(6 * 20px); /* longueur de la nouvelle ligne horizontale */
+  }
+}
+
+.vertical-line::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Décale de la moitié de la hauteur du carré */
+  left: calc(100% + 120px - 10px); /* Décale de la moitié de la largeur du carré */
+  width: 20px;
+  height: 20px;
+  background: black;
+  opacity: 0; /* Initialement invisible */
+  animation: showSquare 2s 4s forwards; /* Apparaît après 6 secondes */
+}
+
+@keyframes showSquare {
+  to {
+    opacity: 1; /* Devient visible */
+  }
+}
+
+.last-name-container {
+  position: relative;
+  border: 2px solid black;  /* Épaisseur et couleur de la bordure */
+  padding: 10px;  /* Espace entre le texte et la bordure */
+  display: inline-flex;  /* Pour les aligner côte à côte */
+  flex-direction: column;  /* Pour les aligner verticalement */
+  align-items: center;
+  position: absolute;
+  font-family: 'Myfont', arial, sans-serif;
+  left: calc(50% - 25cm); /* 10cm à gauche du centre de la page */
+  top: 49%;
+  transform: translateY(-50%) rotate(90deg); /* Rotation de 90 degrés */
+}
+
+
+
+.first-name{ 
+  font-size: 100px;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 60px;
+ 
+  
+}
+
+
+.last-name {
+  font-size: 100px;
+  font-weight: bold;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 12px;
+
+}
+
+
+.name-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent; /* Supprime le fond noir */
+  /* Le reste de tes styles */
+}
+
+
+.lava {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; 
+}
+
+@media only screen and (max-width: 600px) {
+  .links {
+    top: 200px;
+    right: 140px;
+  }
+}
+
+#bitmapContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000; /* ou un autre nombre qui le place au-dessus des autres éléments */
+}
+
+#hexValues {
+  margin: 0 10px; /* ajuste comme tu veux */
+}
+
+#transition-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black; /* Change cette couleur au besoin */
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* La classe .active sera ajoutée via JavaScript pour déclencher la transition */
+.active {
+  display: block;
+  opacity: 1;
+}
+
+
+#blob {
+  position: fixed;
+  top: 20%;
+  left: 85%;
+  width: 800px;
+  height: 800px;
+  background: linear-gradient(to right, rgb(242, 191, 89), rgb(219, 67, 25));
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: blob 8s linear infinite;
+  transform: translate(-50%, -50%); /* Centrer le blob */
+  z-index: 0; /* Pour s'assurer qu'il reste en arrière-plan */
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(90deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(180deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(270deg);
+  }
+
+}
