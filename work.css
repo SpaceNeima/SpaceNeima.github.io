@@ -16,14 +16,12 @@
 body, html {
   height: 100%;
   margin: 0;
-  padding : 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color : rgb(rgb(0, 0, 0));
+  background-color: rgb(0, 0, 0);
   overflow: hidden; 
- 
-  
 }
 
 #video-background {
@@ -38,8 +36,6 @@ body, html {
   z-index: -100; /* Garde la vidéo en arrière-plan */
   transform-origin: center center; 
 }
-
-
 
 .container {
   display: grid; /* Utilise la grille pour la disposition */
@@ -71,7 +67,7 @@ body, html {
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-position 0.3s ease;
-  background-color:"#0000";
+  background-color: transparent;
   transition: transform 0.3s ease-in-out, background-position 0.3s ease-in-out; /* Transition plus douce */
   z-index: 2;
 }
@@ -83,7 +79,7 @@ body, html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color:"#0000"; /* Fond noir initial */
+  background-color: transparent; /* Fond transparent initial */
   transition: transform 0.3s ease-in-out; /* Transition pour le glissement */
   transform: translateY(0%); /* Commence couvrant le carré */
   z-index: 2; /* Au-dessus de l'image de fond */
@@ -98,8 +94,6 @@ body, html {
   transform: scale(1.05); /* Légère augmentation de la taille */
 }
 
-
-
 /* Pour que l'image de fond apparaisse sous le fond noir, nous devons l'ajouter explicitement */
 .square {
   background-image: url('Wasserstoff_21cm_17.jpg'); /* Remplace par le chemin de ton image */
@@ -112,11 +106,12 @@ body, html {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0,); /* Fond semi-transparent */
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
   z-index: 10; /* Assure qu'il est au-dessus des autres éléments */
   align-items: center;
   justify-content: center;
 }
+
 .modal-content {
   position: relative;
   background-color: #fefefe;
@@ -126,13 +121,12 @@ body, html {
   max-width: 1200px; /* Largeur maximale */
   height: auto; /* La hauteur s'ajuste automatiquement au contenu */
   max-height: 80vh; /* Hauteur maximale pour éviter de dépasser la vue de l'écran */
-  box-shadow: 0 4px 8px rgba(0, 0, 0,);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 11;
   display: flex;
   flex-direction: column; /* Organise le contenu verticalement */
   align-items: center; /* Centre horizontalement le contenu */
   overflow-y: auto; /* Permet le défilement vertical si nécessaire */
-  
 }
 
 .modal-gif-container {
@@ -142,7 +136,7 @@ body, html {
 .modal-gif {
   width: 70%; /* Diminue la largeur à 50% de la largeur de son conteneur parent */
   height: auto; /* La hauteur s'ajustera proportionnellement */
-  margin-bottom:  20px; /* Ajoute un espace entre les GIFs */
+  margin-bottom: 20px; /* Ajoute un espace entre les GIFs */
 }
 
 .modal-gif img {
@@ -161,13 +155,13 @@ body, html {
   margin-top: 10px; /* Espace au-dessus du titre */
   margin-bottom: 20px; /* Espace en dessous du titre */
   text-align: center; /* Centre le titre si tu le souhaites */
-  font-family: 'Myfont2', arial,  sans-serif; 
+  font-family: 'Myfont2', arial, sans-serif; 
 }
 
 .modal-description {
   font-size: 16px; /* Ajuste la taille de la description */
   margin-top: 10px; /* Espace au-dessus de la description */
-  font-family: 'Myfont', arial,  sans-serif; 
+  font-family: 'Myfont', arial, sans-serif; 
 }
 
 .modal-video-container {
@@ -199,13 +193,10 @@ body, html {
   margin-bottom: 10px; /* Ajoute plus d'espace en dessous de la description */
 }
 
-
-
 .project1-modal-image {
-  max-width : 70%;
-  height : auto;
-  margin : 20px auto;
-
+  max-width: 70%;
+  height: auto;
+  margin: 20px auto;
 }
 
 .modal-separator {
@@ -220,7 +211,7 @@ body, html {
   z-index: 1000;
   color: #aaa;
   font-size: 36px;
-  padding : 5px;
+  padding: 5px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -235,10 +226,10 @@ body, html {
   background-color: black;
   position: absolute; /* Position absolue */
   top: 7%; /* Centre verticalement sur le rectangle blanc */
-  left: 36%; /* Centre horizontalement sur le rectangle blanc */
+  left: 50%; /* Centre horizontalement sur le rectangle blanc */
   transform: translate(-50%, -50%); /* Ajuste la position pour centrer précisément le texte */
   font-size: 40px; /* Taille de la police pour le lien */
-  font-family: 'Myfont3', arial,  sans-serif; 
+  font-family: 'Myfont3', arial, sans-serif; 
   color: #ffffff; /* Couleur du texte */
   text-decoration: none; /* Supprime le soulignement par défaut des liens */
   z-index: 2; /* S'assurer qu'il est au-dessus du rectangle blanc */
@@ -247,8 +238,7 @@ body, html {
 }
 
 .return-link:hover {
-  transform: translateY(-5px); /* Déplace légèrement vers le haut pour l'effet de surélévation */
-
+  transform: translate(-50%, -60%); /* Déplace vers le haut au survol */
 }
 
 @keyframes fadeIn {
@@ -256,16 +246,6 @@ body, html {
   to { opacity: 1; }
 }
 
-.rectangle-blanc {
-  width: 40%; /* Largeur du rectangle */
-  height: 800px; /* Hauteur du rectangle */
-  background-color: rgb(0, 0, 0,0.5); /* Couleur de fond blanche */
-  position: absolute; /* Positionnement absolu pour le placer au centre */
-  top: 50%; /* Position verticale centrée */
-  left: 50%; /* Position horizontale centrée */
-  transform: translate(-50%, -50%); /* Déplace le rectangle pour le centrer exactement */
-  z-index: 1; /* Assure qu'il est visible au-dessus des autres éléments si nécessaire */
-}
 
 .gif-title-spacing {
   margin-bottom: 30px; /* Ajoute de l'espace sous le titre du GIF */
@@ -291,7 +271,6 @@ body, html {
 
 .video-desc-spacing {
   margin-top: 20px; /* Ajoute de l'espace au-dessus de la description de la vidéo */
-
 }
 
 /* Ajoute ceci dans ton fichier CSS */
@@ -299,7 +278,6 @@ body, html {
   margin-top: 30px; /* Ajuste la marge supérieure selon tes besoins */
   margin-bottom: 30px; /* Ajuste la marge inférieure selon tes besoins */
 }
-
 
 /* Style pour le titre de la nouvelle rangée sans marge supplémentaire */
 .new-row-title {
@@ -324,8 +302,127 @@ body, html {
   margin-top: 10px; /* Ajuste cette valeur pour l'espacement au-dessus de la rangée */
 }
 
-.modal-brainvideo{
+.modal-brainvideo {
   transform: scale(0.5);
 }
 
+@media (max-width: 1440px) and (max-height: 900px) {
+  .return-link {
+    top: 15vh; /* Ajuste cette valeur selon tes besoins pour remonter le lien */
+    left: 50%; /* Centrage horizontal */
+    transform: translate(-50%, -50%); /* Assure un centrage précis */
+    font-size: 40px; /* Réduit la taille de la police du lien */
+  }
 
+  .square {
+    width: 100px; /* Réduit la largeur des carrés */
+    height: 100px; /* Réduit la hauteur des carrés */
+  }
+}
+
+@media (pointer: coarse) and (hover: none) {
+  .container {
+    margin-top: 135px; /* Remonte les carrés en ajoutant une marge négative */
+  }
+
+  .return-link {
+    top: 7%; /* Ajuste la position verticale du lien "home" */
+    left: 50%; /* Centrage horizontal */
+    font-size: 45px; /* Agrandit légèrement la police du lien */
+    transform: translate(-50%, -50%); /* Assure un centrage précis */
+  }
+
+  .square {
+    width: 140px; /* Ajuste légèrement la taille des carrés */
+    height: 140px; /* Ajuste légèrement la taille des carrés */
+  }
+
+  .rectangle-blanc {
+    height: 1000px; /* Augmente la hauteur du rectangle */
+  }
+}
+
+@media (max-width: 1280px) and (max-height: 800px) {
+  .return-link {
+    top: 10vh; /* Ajuste cette valeur selon tes besoins pour remonter le lien */
+    left: 50%; /* Centrage horizontal */
+    transform: translate(-50%, -50%); /* Assure un centrage précis */
+    font-size: 30px; /* Réduit la taille de la police du lien */
+  }
+
+  .square {
+    width: 100px; /* Réduit la largeur des carrés */
+    height: 100px; /* Réduit la hauteur des carrés */
+  }
+}
+
+/* Media queries pour les formats MDPI */
+@media screen and (max-width: 1280px) and (max-height: 800px) {
+  .container {
+    gap: 40px; /* Augmente l'espace entre les carrés */
+  }
+
+  .return-link {
+    top: 10vh; /* Ajuste cette valeur selon tes besoins pour remonter le lien */
+    left: 50%; /* Centrage horizontal */
+    transform: translate(-50%, -50%); /* Assure un centrage précis */
+    font-size: 35px; /* Ajuste la taille de la police du lien */
+  }
+
+  .square {
+    width: 120px; /* Augmente la largeur des carrés */
+    height: 120px; /* Augmente la hauteur des carrés */
+  }
+}
+
+/* Media queries pour les écrans HiDPI */
+@media screen and (min-width: 1920px) and (max-width: 3839px) and (min-height: 1080px) and (max-height: 2159px) {
+  .container {
+    gap: 50px; /* Augmente l'espace entre les carrés */
+  }
+
+  .return-link {
+    top: 15vh; /* Ajuste la position verticale du lien "home" */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Assure un centrage précis */
+    font-size: 40px; /* Ajuste la taille de la police du lien */
+  }
+
+  .square {
+    width: 150px; /* Augmente la largeur des carrés */
+    height: 150px; /* Augmente la hauteur des carrés */
+  }
+}
+
+/* Media queries pour les écrans 4K */
+@media screen and (min-width: 3840px) and (min-height: 2160px) {
+  html {
+    font-size: 32px; /* Double la taille de la police pour les écrans 4K */
+  }
+
+  .container {
+    gap: 60px; /* Augmente l'espace entre les carrés */
+  }
+
+  .return-link {
+    top: 18%; /* Relever le lien "home" pour les écrans 4K */
+    left: 50%; /* Centrage horizontal */
+    transform: translate(-50%, -50%); /* Assure un centrage précis */
+    font-size: 3rem; /* Ajuste la taille de la police pour les écrans 4K */
+  }
+
+  .square {
+    width: 200px; /* Augmente la largeur des carrés */
+    height: 200px; /* Augmente la hauteur des carrés */
+  }
+
+  #image {
+    width: 30%;
+    top: 65%; /* Position de l'image */
+  }
+
+  #profileVideo {
+    width: 30%;
+    top: calc(65% + 35rem); /* Ajoute un espace plus grand entre l'image et la vidéo pour les écrans 4K */
+  }
+}

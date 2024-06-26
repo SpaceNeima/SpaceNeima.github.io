@@ -1,27 +1,21 @@
+/* Font-Face Definitions */
 @font-face {
   font-family: 'MyFont';
   src: url('PPMonumentExtended-Light.otf') format('opentype');
 }
 
-
-
 @font-face {
-  font-family:'MyFont2' ;
+  font-family: 'MyFont2';
   src: url('PPMonumentExtended-Black.otf') format('opentype');
 }
 
 @font-face {
-  font-family:'MyFont3' ;
+  font-family: 'MyFont3';
   src: url('NEOPIXEL-Regular.otf') format('opentype');
 }
 
-.special {
-  font-family: 'MyFont3', arial, sans-serif;
-}
-
-
+/* Base Styles for 14-inch screen */
 body, html {
-  min-width: 1280px;  /* Ajuste cette valeur selon tes besoins */
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -35,7 +29,6 @@ canvas {
   z-index: -1;
 }
 
-
 .scene {
   perspective: 1000px;
   width: 100vw;
@@ -46,63 +39,51 @@ canvas {
   flex-direction: row;
 }
 
+.special {
+  font-family: 'MyFont3', arial, sans-serif;
+}
+
 .link {
   text-decoration: none;
-  font-family: 'Myfont3', arial,  sans-serif; ;
-  color: #000; 
-  font-size: 50px;
-  margin-right: -130px; 
+  font-family: 'MyFont3', arial, sans-serif;
+  color: #000;
+  font-size: 50px; /* Relative unit for scalability */
+  margin-right: -130px;
   margin-bottom: 120px;
-
   animation: fadeIn 2s ease-in-out forwards;
   opacity: 0;  /* Initialement invisible */
-
 }
 
 .link:hover {
-  transform: translateY(-5px);  /* Ajuste la valeur selon tes besoins */
+  transform: translateY(-5px);
   transition: transform 0.3s ease;
 }
 
-
-.about-link {
-  animation-delay: 5s;  /* Apparaît après 1 seconde */
-}
-
-.work-link {
-  animation-delay: 6s;  /* Apparaît après 2 secondes */
-}
-
-.contact-link {
-  animation-delay: 7s;  /* Apparaît après 3 secondes */
-}
+.about-link { animation-delay: 5s; }
+.work-link { animation-delay: 6s; }
+.contact-link { animation-delay: 7s; }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-
 
 .links {
   position: fixed;
-  top: 260px; 
-  right: 370px; 
+  top: 260px;
+  right: 370px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   z-index: 1000;
- }
-  
+}
+
 .cube {
   position: relative;
   width: 200px;
   height: 200px;
   transform-style: preserve-3d;
-  margin: 0 1cm; 
+  margin: 0 1cm;
   transition: box-shadow 0.3s ease-out;
 }
 
@@ -125,30 +106,27 @@ canvas {
 
 .face {
   position: absolute;
-  width: 200px;  
-  height: 200px;  
+  width: 200px;
+  height: 200px;
   background: transparent;
   border: 1px solid black;
 }
 
-.front  { transform: rotateY(0deg) translateZ(100px); }   
-.back   { transform: rotateY(180deg) translateZ(100px); }  
-.left   { transform: rotateY(-90deg) translateZ(100px); }  
-.right  { transform: rotateY(90deg) translateZ(100px); }   
-.top    { transform: rotateX(90deg) translateZ(100px); }   
-.bottom { transform: rotateX(-90deg) translateZ(100px); } 
-
+.front { transform: rotateY(0deg) translateZ(100px); }
+.back { transform: rotateY(180deg) translateZ(100px); }
+.left { transform: rotateY(-90deg) translateZ(100px); }
+.right { transform: rotateY(90deg) translateZ(100px); }
+.top { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
 
 .first-name-container {
   position: relative;
   display: inline-block;
-  font-family: 'Myfont2', arial,  sans-serif;
-  left: calc(50% - 13cm); /* 10cm à gauche du centre de la page */
-  top: 8% ;
+  font-family: 'MyFont2', arial, sans-serif;
+  left: calc(50% - 13cm); /* 13cm à gauche du centre de la page */
+  top: 8%;
   transform: translateY(-9%);
-
 }
-
 
 .first-name::after {
   content: "";
@@ -160,89 +138,77 @@ canvas {
   background: black; /* couleur de la ligne */
   animation: drawLine 2s forwards; /* animation */
 }
+
 @keyframes drawLine {
-  to {
-    width: calc(100% - 40px); /* s'arrête avant la fin du texte */
-  }
+  to { width: calc(100% - 40px); }
 }
 
 .vertical-line {
   position: absolute;
   bottom: 1;
-  left: calc(100% - 42px); /* un petit espace après le prénom */
-  width: 2px; /* épaisseur de la ligne */
+  left: calc(100% - 42px);
+  width: 2px;
   height: 0;
-  background: black; /* couleur de la ligne */
-  animation: drawLineDown 2s 2s forwards; /* animation */
+  background: black;
+  animation: drawLineDown 2s 2s forwards;
 }
 
 @keyframes drawLineDown {
-  to {
-  height: calc(14 * 20px); /* descend de 14 carreaux */
-  }
+  to { height: calc(14 * 20px); }
 }
 
 .vertical-line::before {
   content: "";
   position: absolute;
-  bottom:0; /* même hauteur que la ligne verticale */
-  left: 0; /* commence à la gauche de la ligne verticale */
+  bottom:0;
+  left: 0;
   width: 0;
-  height: 2px; /* même épaisseur que la ligne verticale */
-  background: black; /* même couleur que la ligne verticale */
-  animation: drawLineRight 2s 4s forwards; /* animation */
+  height: 2px;
+  background: black;
+  animation: drawLineRight 2s 4s forwards;
 }
 
 @keyframes drawLineRight {
-  to {
-    width: calc(6 * 20px); /* longueur de la nouvelle ligne horizontale */
-  }
+  to { width: calc(6 * 20px); }
 }
 
 .vertical-line::after {
   content: "";
   position: absolute;
-  bottom: -10px; /* Décale de la moitié de la hauteur du carré */
-  left: calc(100% + 120px - 10px); /* Décale de la moitié de la largeur du carré */
+  bottom: -10px;
+  left: calc(100% + 120px - 10px);
   width: 20px;
   height: 20px;
   background: black;
-  opacity: 0; /* Initialement invisible */
-  animation: showSquare 2s 4s forwards; /* Apparaît après 6 secondes */
+  opacity: 0;
+  animation: showSquare 2s 4s forwards;
 }
 
 @keyframes showSquare {
-  to {
-    opacity: 1; /* Devient visible */
-  }
+  to { opacity: 1; }
 }
 
 .last-name-container {
   position: relative;
-  border: 2px solid black;  /* Épaisseur et couleur de la bordure */
-  padding: 10px;  /* Espace entre le texte et la bordure */
-  display: inline-flex;  /* Pour les aligner côte à côte */
-  flex-direction: column;  /* Pour les aligner verticalement */
+  border: 2px solid black;
+  padding: 10px;
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
   position: absolute;
-  font-family: 'Myfont', arial, sans-serif;
-  left: calc(50% - 25cm); /* 10cm à gauche du centre de la page */
+  font-family: 'MyFont', arial, sans-serif;
+  left: calc(50% - 25cm); /* 25cm à gauche du centre de la page */
   top: 49%;
   transform: translateY(-50%) rotate(90deg); /* Rotation de 90 degrés */
 }
 
-
-
-.first-name{ 
+.first-name {
   font-size: 100px;
   font-weight: bold;
   color: black;
   text-transform: uppercase;
   letter-spacing: 60px;
- 
-  
 }
-
 
 .last-name {
   font-size: 100px;
@@ -250,19 +216,15 @@ canvas {
   color: #000000;
   text-transform: uppercase;
   letter-spacing: 12px;
-
 }
-
 
 .name-container {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: transparent; /* Supprime le fond noir */
-  /* Le reste de tes styles */
+  background-color: transparent;
 }
-
 
 .lava {
   position: absolute;
@@ -270,25 +232,18 @@ canvas {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; 
-}
-
-@media only screen and (max-width: 600px) {
-  .links {
-    top: 200px;
-    right: 140px;
-  }
+  z-index: -1;
 }
 
 #bitmapContainer {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 1000; /* ou un autre nombre qui le place au-dessus des autres éléments */
+  z-index: 1000;
 }
 
 #hexValues {
-  margin: 0 10px; /* ajuste comme tu veux */
+  margin: 0 10px;
 }
 
 #transition-background {
@@ -297,45 +252,395 @@ canvas {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: black; /* Change cette couleur au besoin */
+  background: black;
   z-index: 9999;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
 
-/* La classe .active sera ajoutée via JavaScript pour déclencher la transition */
 .active {
   display: block;
   opacity: 1;
 }
 
-
 #blob {
   position: fixed;
-  top: 20%;
-  left: 85%;
+  bottom: -20px; /* Place the blob at the bottom */
+  left: 90%;
   width: 800px;
   height: 800px;
   background: linear-gradient(to right, rgb(242, 191, 89), rgb(219, 67, 25));
   border-radius: 50%;
   filter: blur(20px);
   animation: blob 8s linear infinite;
-  transform: translate(-50%, -50%); /* Centrer le blob */
-  z-index: 0; /* Pour s'assurer qu'il reste en arrière-plan */
+  transform: translateX(-50%) translateY(50%);
+  z-index: 0;
 }
 
-@keyframes blob {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-  }
-  25% {
-    transform: scale(1.2) rotate(90deg);
-  }
-  50% {
-    transform: scale(1.4) rotate(180deg);
-  }
-  75% {
-    transform: scale(1.2) rotate(270deg);
+/* Adaptation pour les laptops MDPI (ex: 1366x768) */
+@media only screen and (max-width: 1366px) {
+  .link {
+    font-size: 2.5rem; /* Ajustement de la taille de la police */
+    margin-right: -6rem; /* Ajustement des marges */
+    margin-bottom: 6rem; /* Ajustement des marges */
   }
 
+  .links {
+    top: 18rem; /* Ajustement de la position pour descendre les liens */
+    right: 15rem; /* Ajustement de la position */
+  }
+
+  .cube {
+    width: 150px; /* Ajustement de la taille des cubes */
+    height: 150px; /* Ajustement de la taille des cubes */
+  }
+
+  .face {
+    width: 150px; /* Ajustement de la taille des faces */
+    height: 150px; /* Ajustement de la taille des faces */
+  }
+
+  .front { transform: rotateY(0deg) translateZ(75px); }
+  .back { transform: rotateY(180deg) translateZ(75px); }
+  .left { transform: rotateY(-90deg) translateZ(75px); }
+  .right { transform: rotateY(90deg) translateZ(75px); }
+  .top { transform: rotateX(90deg) translateZ(75px); }
+  .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+  .first-name-container {
+    left: calc(50% - 10cm); /* Ajustement de la position */
+    top: 6%; /* Ajustement de la position */
+  }
+
+  .first-name, .last-name {
+    font-size: 5rem; /* Ajustement de la taille de la police */
+  }
+
+  .last-name-container {
+    left: calc(53% - 22cm); /* Ajustement de la position pour être plus à gauche */
+  }
+
+  #blob {
+    width: 40rem; /* Ajustement de la taille du blob */
+    height: 40rem; /* Ajustement de la taille du blob */
+  }
+
+  /* Ajout de marges supplémentaires pour les éléments */
+  .scene {
+    margin: 1rem;
+  }
+
+  .name-container {
+    padding: 1rem;
+  }
+}
+
+/* Adaptation pour les laptops avec écran tactile */
+@media only screen and (pointer: coarse) {
+  .link {
+    font-size: 2.5rem; /* Ajustement de la taille de la police */
+    margin-right: -6rem; /* Ajustement des marges */
+    margin-bottom: 6rem; /* Ajustement des marges */
+  }
+
+  .links {
+    top: 18rem; /* Ajustement de la position pour descendre les liens */
+    right: 15rem; /* Ajustement de la position */
+  }
+
+  .cube {
+    width: 150px; /* Ajustement de la taille des cubes */
+    height: 150px; /* Ajustement de la taille des cubes */
+  }
+
+  .face {
+    width: 150px; /* Ajustement de la taille des faces */
+    height: 150px; /* Ajustement de la taille des faces */
+  }
+
+  .front { transform: rotateY(0deg) translateZ(75px); }
+  .back { transform: rotateY(180deg) translateZ(75px); }
+  .left { transform: rotateY(-90deg) translateZ(75px); }
+  .right { transform: rotateY(90deg) translateZ(75px); }
+  .top { transform: rotateX(90deg) translateZ(75px); }
+  .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+  .first-name-container {
+    left: calc(50% - 10cm); /* Ajustement de la position */
+    top: 6%; /* Ajustement de la position */
+  }
+
+  .first-name, .last-name {
+    font-size: 5rem; /* Ajustement de la taille de la police */
+  }
+
+  .last-name-container {
+    left: calc(55% - 22cm); /* Ajustement de la position pour être plus à gauche */
+    top: 41%; /* Position plus élevée */
+  }
+
+  .last-name {
+    font-size: 4.5rem; /* Taille réduite pour les écrans tactiles */
+  }
+
+  #blob {
+    width: 50rem; /* Ajustement de la taille du blob */
+    height: 50rem; /* Ajustement de la taille du blob */
+  }
+
+  /* Ajout de marges supplémentaires pour les éléments */
+  .scene {
+    margin: 1rem;
+  }
+
+  .name-container {
+    padding: 1rem;
+  }
+}
+
+/* Adaptation pour les écrans HD 1080p */
+@media only screen and (min-width: 1920px) and (min-height: 1080px) {
+  .link {
+    font-size: 4rem; /* Ajustement de la taille de la police */
+    margin-right: -8rem; /* Ajustement des marges */
+    margin-bottom: 8rem; /* Ajustement des marges */
+  }
+
+  .links {
+    top: 19.5rem; /* Ajustement de la position pour descendre les liens */
+    right: 30rem; /* Ajustement de la position pour avancer vers la gauche */
+  }
+
+  .cube {
+    width: 250px; /* Ajustement de la taille des cubes */
+    height: 250px; /* Ajustement de la taille des cubes */
+  }
+
+  .face {
+    width: 250px; /* Ajustement de la taille des faces */
+    height: 250px; /* Ajustement de la taille des faces */
+  }
+
+  .front { transform: rotateY(0deg) translateZ(125px); }
+  .back { transform: rotateY(180deg) translateZ(125px); }
+  .left { transform: rotateY(-90deg) translateZ(125px); }
+  .right { transform: rotateY(90deg) translateZ(125px); }
+  .top { transform: rotateX(90deg) translateZ(125px); }
+  .bottom { transform: rotateX(-90deg) translateZ(125px); }
+
+  .first-name-container {
+    left: calc(45% - 12cm); /* Ajustement de la position pour être plus à gauche */
+    top: 10%; /* Ajustement de la position */
+  }
+
+  .first-name {
+    font-size: 7rem; /* Ajustement de la taille de la police */
+  }
+
+  .first-name::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: black;
+    animation: drawLineHd 2s forwards;
+  }
+
+  @keyframes drawLineHd {
+    from { width: 0; }
+    to { width: calc(100% + 100px); } /* Animation pour ligne horizontale */
+  }
+
+  .vertical-line {
+    position: absolute;
+    bottom: 1;
+    left: calc(100% + 98px); /* Aligner avec la fin de la ligne horizontale */
+    width: 2px;
+    height: 0;
+    background: black;
+    animation: drawLineDownHd 2s 2s forwards;
+  }
+
+  @keyframes drawLineDownHd {
+    to { height: calc(14 * 20px); }
+  }
+
+  .vertical-line::before {
+    content: "";
+    position: absolute;
+    bottom:0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: black;
+    animation: drawLineRightHd 2s 4s forwards;
+  }
+
+  @keyframes drawLineRightHd {
+    to { width: calc(6 * 20px); }
+  }
+
+  .vertical-line::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: calc(100% + 120px - 20px);
+    width: 20px;
+    height: 20px;
+    background: black;
+    opacity: 0;
+    animation: showSquareHd 2s 4s forwards;
+  }
+
+  @keyframes showSquareHd {
+    to { opacity: 1; }
+  }
+
+  .last-name-container {
+    left: calc(40% - 24.5cm); /* Ajustement de la position pour être plus à gauche */
+  }
+
+  .last-name {
+    font-size: 7.5rem; /* Ajustement de la taille de la police */
+  }
+
+  #blob {
+    width: 60rem; /* Ajustement de la taille du blob */
+    height: 60rem; /* Ajustement de la taille du blob */
+  }
+
+  /* Ajout de marges supplémentaires pour les éléments */
+  .scene {
+    margin: 2rem;
+  }
+
+  .name-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Adaptation pour les écrans 4K */
+@media only screen and (min-width: 3840px) and (min-height: 2160px) {
+  .link {
+    font-size: 8rem; /* Ajustement de la taille de la police */
+    margin-right: -16rem; /* Ajustement des marges */
+    margin-bottom: 16rem; /* Ajustement des marges */
+  }
+
+  .links {
+    top: 39rem; /* Ajustement de la position pour descendre les liens */
+    right: 45rem; /* Ajustement de la position pour avancer vers la gauche */
+  }
+
+  .cube {
+    width: 500px; /* Ajustement de la taille des cubes */
+    height: 500px; /* Ajustement de la taille des cubes */
+  }
+
+  .face {
+    width: 500px; /* Ajustement de la taille des faces */
+    height: 500px; /* Ajustement de la taille des faces */
+  }
+
+  .front { transform: rotateY(0deg) translateZ(250px); }
+  .back { transform: rotateY(180deg) translateZ(250px); }
+  .left { transform: rotateY(-90deg) translateZ(250px); }
+  .right { transform: rotateY(90deg) translateZ(250px); }
+  .top { transform: rotateX(90deg) translateZ(250px); }
+  .bottom { transform: rotateX(-90deg) translateZ(250px); }
+
+  .first-name-container {
+    left: calc(45% - 24cm); /* Ajustement de la position pour être plus à gauche */
+    top: 20%; /* Ajustement de la position */
+  }
+
+  .first-name {
+    font-size: 14rem; /* Ajustement de la taille de la police */
+  }
+
+  .first-name::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: black;
+    animation: drawLine4k 2s forwards;
+  }
+
+  @keyframes drawLine4k {
+    from { width: 0; }
+    to { width: calc(100% + 590px); } /* Animation pour ligne horizontale */
+  }
+
+  .vertical-line {
+    position: absolute;
+    bottom: 1;
+    left: calc(100% + 586px); /* Aligner avec la fin de la ligne horizontale */
+    width: 4px;
+    height: 0;
+    background: black;
+    animation: drawLineDown4k 2s 2s forwards;
+  }
+
+  @keyframes drawLineDown4k {
+    to { height: calc(14 * 40px); }
+  }
+
+  .vertical-line::before {
+    content: "";
+    position: absolute;
+    bottom:0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: black;
+    animation: drawLineRight4k 2s 4s forwards;
+  }
+
+  @keyframes drawLineRight4k {
+    to { width: calc(6 * 40px); }
+  }
+
+  .vertical-line::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: calc(100% + 240px - 40px);
+    width: 40px;
+    height: 40px;
+    background: black;
+    opacity: 0;
+    animation: showSquare4k 2s 4s forwards;
+  }
+
+  @keyframes showSquare4k {
+    to { opacity: 1; }
+  }
+
+  .last-name-container {
+    left: calc(40% - 39cm); /* Ajustement de la position pour être plus à gauche */
+    top: 43%; /* Avancer le nom de famille plus haut */
+  }
+
+  .last-name {
+    font-size: 12rem; /* Ajustement de la taille de la police */
+  }
+
+  #blob {
+    width: 120rem; /* Ajustement de la taille du blob */
+    height: 120rem; /* Ajustement de la taille du blob */
+  }
+
+  /* Ajout de marges supplémentaires pour les éléments */
+  .scene {
+    margin: 4rem;
+  }
+
+  .name-container {
+    padding: 3rem;
+  }
 }

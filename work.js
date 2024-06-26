@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
   
     var project1 = document.getElementById('project1');
@@ -639,8 +638,3 @@ function closeModal() {
     modal.style.display = 'none';
 }
 });
-
-
-
-
-

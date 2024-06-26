@@ -1,94 +1,192 @@
-
 @font-face {
-    font-family:'MyFont3' ;
-    src: url('NEOPIXEL-Regular.otf') format('opentype');
-  }
-  
-  body, html {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
+  font-family: 'MyFont3';
+  src: url('NEOPIXEL-Regular.otf') format('opentype');
 }
 
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
 
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 
 #backgroundVideo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Assure que la vidéo couvre tout l'espace disponible */
-    z-index: -100; /* Place la vidéo en arrière-plan */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Assure que la vidéo couvre tout l'espace disponible */
+  z-index: -100; /* Place la vidéo en arrière-plan */
 }
 
 #content {
-    position: relative;
-    z-index: 1; /* S'assure que le contenu reste au-dessus de la vidéo */
-    /* Ajoute ici tes autres styles pour le contenu */
+  position: relative;
+  z-index: 1; /* S'assure que le contenu reste au-dessus de la vidéo */
+  /* Ajoute ici tes autres styles pour le contenu */
 }
 
 #scrollContainer {
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll; /* Active le défilement pour ce conteneur */
-    position: relative;
-}
-
-#rectangle, #image {
-    width: 40%; /* Largeur du rectangle et de l'image */
-    height: 800px; /* Hauteur du rectangle et de l'image */
-    position: absolute; /* Positionnement absolu */
-    top: 72%; /* Centré verticalement */
-    left: 50%; /* Centré horizontalement */
-    transform: translate(-50%, -50%); /* Ajustement pour un centrage parfait */
-    z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll; /* Active le défilement pour ce conteneur */
+  position: relative;
 }
 
 #rectangle {
-    background-color: rgb(0, 0, 0,0.5); /* Couleur de fond du rectangle */
-    width: 40%; /* Largeur du rectangle */
-    height: 800px; /* Hauteur du rectangle */
-    position: fixed; /* Maintient le rectangle fixe à l'écran */
-    top: 50%; /* Centré verticalement */
-    left: 50%; /* Centré horizontalement */
-    transform: translate(-50%, -50%); /* Ajustement pour un centrage parfait */
-    z-index: 2; /* S'assure que le rectangle est visible au-dessus des autres éléments */
+  background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond du rectangle */
+  width: 30%; /* Largeur du rectangle */
+  height: 100%; /* Hauteur du rectangle */
+  position: fixed; /* Maintient le rectangle fixe à l'écran */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+#image {
+  width: 30%;
+  height: auto;
+  position: absolute;
+  top: 60%; /* Abaisse l'image */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
 #profileVideo {
-  width: 40%; /* Même largeur que le rectangle et l'image */
-  height: auto; /* Hauteur automatique pour conserver le ratio d'aspect */
-  position: absolute; /* Positionnement absolu */
-  top: calc(72% + 400px); /* Positionnement en dessous de l'image */
-  left: 50%; /* Centrage horizontal */
-  transform: translateX(-50%); /* Ajustement pour un centrage parfait */
-  z-index: 3; /* Même niveau de superposition que l'image */
+  width: 30%; /* Ajuste la largeur de la vidéo de profil pour qu'elle corresponde à celle du rectangle */
+  height: auto;
+  position: absolute;
+  top: calc(60% + 22rem); /* Ajoute un espace entre l'image et la vidéo */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
-
-
 .return-link {
-    background-color: black;
-    position: absolute; /* Position absolue */
-    top: 7%; /* Centre verticalement sur le rectangle blanc */
-    left: 36%; /* Centre horizontalement sur le rectangle blanc */
-    transform: translate(-50%, -50%); /* Ajuste la position pour centrer précisément le texte */
-    font-size: 40px; /* Taille de la police pour le lien */
-    font-family: 'Myfont3', arial,  sans-serif; 
-    color: #ffffff; /* Couleur du texte */
-    text-decoration: none; /* Supprime le soulignement par défaut des liens */
-    z-index: 2; /* S'assurer qu'il est au-dessus du rectangle blanc */
-    animation: fadeIn 1s ease-in-out forwards;
-    transition: transform 0.3s ease;
+  background-color: black;
+  position: absolute;
+  top: 4%; /* Position de base ajustée pour être plus haut */
+  left: 50%;
+  transform: translate(-50%, 0); /* Ajuste transform pour aligner correctement */
+  font-size: 2.5rem;
+  font-family: 'MyFont3', arial, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 2;
+  animation: fadeIn 1s ease-in-out forwards;
+  transition: transform 0.3s ease;
+}
+
+.return-link:hover {
+  transform: translate(-50%, -0.3125rem); /* Ajuste hover effect */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Media queries pour les formats 1280x800 */
+@media screen and (max-width: 1280px) and (max-height: 800px) {
+  #rectangle {
+    width: 40%;
   }
-  
-  .return-link:hover {
-    transform: translateY(-5px); /* Déplace légèrement vers le haut pour l'effet de surélévation */
-  
+  #image, #profileVideo {
+    width: 40%;
+    top: 70%;
   }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  #profileVideo {
+    top: calc(70% + 22rem); /* Ajuste le top pour les écrans de résolution 1280x800 */
   }
+  .return-link {
+    top: 3%; /* Ajuste le top pour les écrans de résolution 1280x800 */
+    font-size: 2rem;
+  }
+}
+
+/* Media queries pour les écrans tactiles */
+@media screen and (max-width: 1280px) and (max-height: 950px) and (pointer: coarse) and (hover: none) {
+  #rectangle {
+    width: 40%;
+  }
+  #image {
+    width: 40%;
+    top: 65%;
+  }
+  #profileVideo {
+    width: 40%;
+    top: calc(65% + 22rem); /* Ajuste le top pour les écrans tactiles */
+  }
+  .return-link {
+    top: 5%; /* Ajuste le top pour les écrans tactiles */
+    font-size: 2.5rem;
+  }
+}
+
+/* Media queries pour les écrans 720p */
+@media screen and (max-width: 720px) {
+  #rectangle {
+    width: 50%;
+  }
+  #image, #profileVideo {
+    width: 50%;
+    top: 80%;
+  }
+  #profileVideo {
+    top: calc(80% + 22rem); /* Ajuste le top pour les écrans 720p */
+  }
+  .return-link {
+    top: 3%; /* Ajuste le top pour les écrans 720p */
+    font-size: 1.5rem;
+  }
+}
+
+/* Media queries pour les écrans Full HD */
+@media screen and (min-width: 1920px) and (max-width: 3839px) and (min-height: 1080px) and (max-height: 2159px) {
+  #rectangle {
+    width: 30%;
+  }
+  #image {
+    width: 30%;
+    top: 60%; /* Position de l'image */
+  }
+  #profileVideo {
+    width: 30%;
+    top: calc(60% + 30rem); /* Ajoute un espace plus grand entre l'image et la vidéo */
+  }
+  .return-link {
+    top: 3%;
+    font-size: 2.5rem;
+  }
+}
+
+/* Media queries pour les écrans 4K */
+@media screen and (min-width: 3840px) and (min-height: 2160px) {
+  html {
+    font-size: 32px; /* Double la taille de la police pour les écrans 4K */
+  }
+
+  #rectangle {
+    width: 30%; /* Maintient la largeur du rectangle pour les écrans 4K */
+  }
+
+  #image {
+    width: 30%; /* Maintient la largeur de l'image pour les écrans 4K */
+    top: 65%; /* Position de l'image */
+  }
+
+  #profileVideo {
+    width: 30%; /* Maintient la largeur de la vidéo de profil pour les écrans 4K */
+    top: calc(65% + 35rem); /* Ajoute un espace plus grand entre l'image et la vidéo pour les écrans 4K */
+  }
+
+  .return-link {
+    top: 8%; /* Maintient le top pour les écrans 4K */
+    font-size: 3rem; /* Ajuste la taille de la police pour les écrans 4K */
+  }
+}
